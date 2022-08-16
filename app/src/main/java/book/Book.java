@@ -9,11 +9,11 @@ public class Book {
         this.author = author;
     }
 
-    public String title() {
+    public String getTitle() {
         return this.title;
     }
 
-    public String author() {
+    public String getAuthor() {
         return this.author;
     }
 }
