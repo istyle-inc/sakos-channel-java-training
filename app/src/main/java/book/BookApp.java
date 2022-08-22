@@ -1,6 +1,7 @@
 package book;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BookApp {
@@ -11,33 +12,41 @@ public class BookApp {
      * @return
      */
     public List<Book> シチュエーション1_本のリストに重複なく本を足したい(List<Book> books, Book... toBeAdded) {
-        var result = new ArrayList<>(books);
+        var result = removeDuplication(books);
+        var additions = removeDuplication(Arrays.asList(toBeAdded));
         var actualAdditions = new ArrayList<Book>();
-        for (Book candidate : toBeAdded) {
-            var foundDuplicationInList = false;
-            var foundDuplicationInAddition = false;
-            for (Book alreadyInList : books) {
-                if (sameBook(candidate, alreadyInList)) {
-                    foundDuplicationInList = true;
-                    break;
-                }
-            }
-            if (!foundDuplicationInList) {
-                for (Book actualAddition : actualAdditions) {
-                    if (sameBook(candidate, actualAddition)) {
-                        foundDuplicationInAddition = true;
-                        break;
-                    }
-                }
-                if (!foundDuplicationInAddition) {
+        
+        for (Book candidate : additions) {
+            if (checkNotDuplication(books, candidate)) {
+                if (checkNotDuplication(actualAdditions, candidate)) {
                     actualAdditions.add(candidate);
                 }
             }
-            foundDuplicationInList = false;
-            foundDuplicationInAddition = false;
         }
         result.addAll(actualAdditions);
         return result;
+    }
+
+    private List<Book> removeDuplication(List<Book> books) {
+        var bookList = new ArrayList<Book>();
+        
+        for (Book book : books) {
+            if (checkNotDuplication(bookList, book)) {
+                bookList.add(book);
+            }
+        }
+        return bookList;
+    }
+    
+    private boolean checkNotDuplication(List<Book> books, Book candidate) {
+        var foundDuplicationInList = false;
+        for (Book alreadyInList : books) {
+            if (sameBook(candidate, alreadyInList)) {
+                foundDuplicationInList = true;
+                break;
+            }
+        }
+        return !foundDuplicationInList;
     }
 
     /**

@@ -85,5 +85,19 @@ public class BookAppTest {
                     .anyMatch(book -> book.title() == "タイトル3" && book.author() == "著者3")
                     .hasSize(3);
         }
+
+        @Test
+        public void 初期状態の本に重複があった場合_出力されたリストから省かれていること() {
+            // SetUp
+            var sut = new BookApp();
+            var books = List.of(new Book("タイトル1", "著者1"), new Book("タイトル1", "著者1"));
+            // Exercise
+            var actual = sut.シチュエーション1_本のリストに重複なく本を足したい(books);
+            // Test
+            System.out.println(actual);
+            assertThat(actual)
+                    .anyMatch(book -> book.title() == "タイトル1" && book.author() == "著者1")
+                    .hasSize(1);
+        }
     }
 }
