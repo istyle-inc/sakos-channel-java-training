@@ -5,7 +5,7 @@ import java.util.List;
 
 public class BookApp {
     /**
-     * 
+     *
      * @param books
      * @param toBeAdded
      * @return
@@ -47,6 +47,6 @@ public class BookApp {
      * @return 同じであればtrue
      */
     private boolean sameBook(Book book1, Book book2) {
-        return book1.title() == book2.title() && book1.author() == book2.author();
+        return book1.getTitle() == book2.getTitle() && book1.getAuthor() == book2.getAuthor();
     }
 }
