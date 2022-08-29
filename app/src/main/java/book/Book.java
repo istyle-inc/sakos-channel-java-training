@@ -16,4 +16,13 @@ public class Book {
     public String author() {
         return this.author;
     }
+
+    /**
+     * この世界ではタイトルと著者名が同じ本は同じ本とみなす
+     * @param book
+     * @return 同じであればtrue
+     */
+    public boolean sameAs(Book another) {
+        return this.title() == another.title() && this.author() == another.author();
+    }
 }

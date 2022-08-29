@@ -17,14 +17,14 @@ public class BookApp {
             var foundDuplicationInList = false;
             var foundDuplicationInAddition = false;
             for (Book alreadyInList : books) {
-                if (sameBook(candidate, alreadyInList)) {
+                if (alreadyInList.sameAs(candidate)) {
                     foundDuplicationInList = true;
                     break;
                 }
             }
             if (!foundDuplicationInList) {
                 for (Book actualAddition : actualAdditions) {
-                    if (sameBook(candidate, actualAddition)) {
+                    if (actualAddition.sameAs(candidate)) {
                         foundDuplicationInAddition = true;
                         break;
                     }
@@ -38,15 +38,5 @@ public class BookApp {
         }
         result.addAll(actualAdditions);
         return result;
-    }
-
-    /**
-     * この世界ではタイトルと著者名が同じ本は同じ本とみなす
-     * @param book1
-     * @param book2
-     * @return 同じであればtrue
-     */
-    private boolean sameBook(Book book1, Book book2) {
-        return book1.title() == book2.title() && book1.author() == book2.author();
     }
 }
