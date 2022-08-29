@@ -41,21 +41,11 @@ public class BookApp {
     private boolean checkNotDuplication(List<Book> books, Book candidate) {
         var foundDuplicationInList = false;
         for (Book alreadyInList : books) {
-            if (sameBook(candidate, alreadyInList)) {
+            if (alreadyInList.sameAs(candidate)) {
                 foundDuplicationInList = true;
                 break;
             }
         }
         return !foundDuplicationInList;
-    }
-
-    /**
-     * この世界ではタイトルと著者名が同じ本は同じ本とみなす
-     * @param book1
-     * @param book2
-     * @return 同じであればtrue
-     */
-    private boolean sameBook(Book book1, Book book2) {
-        return book1.title() == book2.title() && book1.author() == book2.author();
     }
 }

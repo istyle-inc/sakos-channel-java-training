@@ -2,34 +2,30 @@ package book;
 
 import java.security.PublicKey;
 
-import interfaces.BookInterface;
-
-public class Book implements BookInterface {
+public class Book {
     private final String title;
     private final String author;
-    private int price = 0;
 
     public Book(String title, String author) {
         this.title = title;
         this.author = author;
-
     }
 
-    @Override
     public String author() {
         return author;
     }
 
-    @Override
     public String title() {
         return title;
     }
 
-    public void setPrice(int price){
-        this.price = price;
+    /**
+     * この世界ではタイトルと著者名が同じ本は同じ本とみなす
+     * @param book
+     * @return 同じであればtrue
+     */
+    public boolean sameAs(Book book) {
+        return this.title == book.title() && this.author == book.author();
     }
 
-    public void getPrice(int price){
-        return price;
-    }
 }
