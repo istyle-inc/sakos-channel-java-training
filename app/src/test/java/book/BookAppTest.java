@@ -99,5 +99,23 @@ public class BookAppTest {
                     .anyMatch(book -> book.title() == "タイトル1" && book.author() == "著者1")
                     .hasSize(1);
         }
+
+        //２回bookappを呼ぶテスト
+        @Test
+        public void 複数回呼んでも前の状態が残っていないこと() {
+            // SetUp
+            var sut = new BookApp();
+            var books = List.of(new Book("タイトル1", "著者1"), new Book("タイトル2", "著者2"));
+            // Exercise
+            sut.シチュエーション1_本のリストに重複なく本を足したい(books, new Book("タイトル3", "著者2"));
+            var actual = sut.シチュエーション1_本のリストに重複なく本を足したい(books, new Book("タイトル4", "著者4"));
+            // Test
+            System.out.println(actual);
+            assertThat(actual)
+                    .anyMatch(book -> book.title() == "タイトル1" && book.author() == "著者1")
+                    .anyMatch(book -> book.title() == "タイトル2" && book.author() == "著者2")
+                    .anyMatch(book -> book.title() == "タイトル4" && book.author() == "著者4")
+                    .hasSize(3);
+        }
     }
 }
