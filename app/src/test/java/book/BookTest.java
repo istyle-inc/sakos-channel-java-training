@@ -5,7 +5,6 @@ import java.util.List;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
-import static org.hamcrest.CoreMatchers.*;
 
 
 public class BookTest {
@@ -16,7 +15,7 @@ public class BookTest {
         // Exercise
         var actual = sut.author();
         // Test
-        assertThat(actual, is("著者1"));
+        assertThat(actual).isEqualTo("著者1");
     }
 
     @Test
@@ -26,7 +25,7 @@ public class BookTest {
         // Exercise
         var actual = sut.title();
         // Test
-        assertThat(actual, is("タイトル1"));
+        assertThat(actual).isEqualTo("タイトル1");
     }
 
     @Test
@@ -37,8 +36,6 @@ public class BookTest {
         // Exercise
         var actual = book_1.sameAs(book_2);
         // Test
-        assertTrue(actual);
+        assertThat(actual).isTrue();
     }
-
-
 }
