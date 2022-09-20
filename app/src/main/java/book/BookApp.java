@@ -1,11 +1,15 @@
 package book;
 
+import lib.collectors.NotDuplicateCollectors;
+
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class BookApp {
     /**
-     * 
      * @param books
      * @param toBeAdded
      * @return
@@ -38,6 +42,20 @@ public class BookApp {
         }
         result.addAll(actualAdditions);
         return result;
+    }
+
+    public List<Book> addBookWithoutDuplicateFor(List<Book> books, Book... toBeAdded) {
+        return Stream
+                .of(books, Arrays.asList(toBeAdded))
+                .flatMap(Collection::stream)
+                .collect(NotDuplicateCollectors.toBookList());
+    }
+
+    public List<Book> addBookWithoutDuplicateFor2(List<Book> books, Book... toBeAdded) {
+        return Stream
+                .of(books, Arrays.asList(toBeAdded))
+                .flatMap(Collection::stream)
+                .collect(NotDuplicateCollectors.toList(Book.notDuplicateCondition));
     }
 
     /**
