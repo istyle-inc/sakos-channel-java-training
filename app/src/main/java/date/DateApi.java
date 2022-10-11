@@ -14,7 +14,7 @@ import date.response.BusinessDateResponse;
 public class DateApi {
     /**
      * 実日時をISO8061拡張形式(秒まで)で返却する
-     * 
+     *
      * @return 実日時の文字列
      */
     public String actualCurrentDate() {
@@ -25,9 +25,15 @@ public class DateApi {
 
     /**
      * 営業日付オブジェクトを返却するメソッドのスタブ
+     *
      * @return 営業日付オブジェクト
      */
     public BusinessDateResponse currentBusinessDate() {
-        return null;
+        var businessdateTime = new BusinessDateTime(
+                OffsetDateTime.now(ZoneId.of("Asia/Tokyo")));
+
+        return new BusinessDateResponse(
+                businessdateTime.date(),
+                businessdateTime.isOpen());
     }
 }
