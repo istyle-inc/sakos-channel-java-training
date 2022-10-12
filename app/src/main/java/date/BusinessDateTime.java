@@ -16,7 +16,7 @@ public class BusinessDateTime {
     private static int OPEN_HOUR = 9;
     private static int CLOSE_HOUR = 18;
 
-    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy年mm月dd日");
+    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy年MM月dd日");
 
     public BusinessDateTime(OffsetDateTime offsetDateTime) {
         this.time = offsetDateTime.toLocalDateTime();
